@@ -1,0 +1,156 @@
+{% extends 'home/base.html' %}
+
+{% block carousel %}
+    {% for f in first%}
+        {% if f.id == 1%}
+        <div class="item active">
+            <img style="" src="{{f.image.url}}" alt="Construction">
+            <div class="overlay">
+                <div class="carousel-caption">
+                  <!--  <h3>We are Certified Engineers</h3>-->
+                    <h1 class="second_heading">{{f.title}}</h1>
+                    <p>{{f.body}}</p>
+                    <a data-toggle="modal" data-target="#exampleModal"
+                data-whatever="@getbootstrap"  class="btn know_btn">{{f.first_button}}</a>
+                    <a href="#filters" class="btn know_btn">{{f.second_button}}</a>
+                </div>					
+            </div>
+        </div>
+        {% else %}
+        <div class="item ">
+            <img style="" src="{{f.image.url}}" alt="Construction">
+            <div class="overlay">
+                <div class="carousel-caption">
+                  <!--  <h3>We are Certified Engineers</h3>-->
+                    <h1 class="second_heading">{{f.title}}</h1>
+                    <p>{{f.body}}</p>
+                    <a data-toggle="modal" data-target="#exampleModal"
+                data-whatever="@getbootstrap"  class="btn know_btn">{{f.first_button}}</a>
+                    <a href="#filters" class="btn know_btn">{{f.second_button}}</a>
+                </div>					
+            </div>
+        </div>
+        {% endif%}
+    
+    {% endfor %}
+{% endblock%}
+
+{% block welcome %}
+    {% for s in second %}
+    <div class="row">
+        <div class="col-lg-7 col-md-6">
+            <div class="about_content">
+                <h2>{{s.title}}</h2>
+                <h3>{{s.about_title}}</h3>
+                <p> {{s.body}}</p>
+                <a data-toggle="modal" data-target="#exampleModal"
+                data-whatever="@getbootstrap" class="btn know_btn">{{s.first_button}}</a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-lg-offset-1">
+            <div class="about_banner">
+                <img src="{{s.image.url}}" alt="" />
+            </div>
+        </div>
+    </div>
+    {% endfor%}
+{% endblock %}
+
+{% block why_us %}
+    {% for t in thrid %}
+    <div class="col-md-3 col-sm-6">
+        <div class="why_us_item">
+            <span class="{{t.icon}}"></span>
+            <h4>{{t.title}}</h4>
+            <p>{{t.body}}</p>
+        </div>
+    </div>
+    {% endfor %}
+    
+{% endblock %}
+
+{% block service %}
+    {% for f in fourth %}
+        <div class="col-md-4">
+                <div class="service_item">
+                <img src="{{f.image.url}}" alt="Our Services" />
+                <h3>{{f.title}}</h3>
+                <p>{{f.body}}</p>
+                <a data-toggle="modal" data-target="#exampleModal"
+                data-whatever="@getbootstrap" class="btn know_btn">{{f.first_button}}</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block portfolio%}
+    {% for ff in fifth%}
+        {% if ff.id == 1 %}
+        <div class="grid-item grid-item--width2 grid-item--height2 buildings">
+            <img alt="" src="{{ff.image.url}}" >
+            <div class="portfolio_hover_area">
+                <a class="fancybox" href="{{ff.image.url}}" data-fancybox-group="gallery" title="{{ff.title}}"><span class="fa fa-search"></span></a>
+               <!-- <a href="#"><span class="fa fa-link"></span></a>-->
+            </div>  
+        </div>
+        {% elif ff.id == 6 %}
+        <div class="grid-item isolation">
+            <img alt="" src="{{ff.image.url}}" >
+            <div class="portfolio_hover_area">
+                <a class="fancybox" href="{{ff.image.url}}" data-fancybox-group="gallery" title="{{ff.title}}"><span class="fa fa-search"></span></a>
+               <!-- <a href="#"><span class="fa fa-link"></span></a>-->
+            </div>   
+        </div>
+        {% elif ff.id >= 2 and ff.id <= 3 %}
+        <div class="grid-item buildings">
+            <img alt="" src="{{ff.image.url}}" >
+            <div class="portfolio_hover_area">
+                <a class="fancybox" href="{{ff.image.url}}" data-fancybox-group="gallery" title="{{ff.title}}"><span class="fa fa-search"></span></a>
+               <!-- <a href="#"><span class="fa fa-link"></span></a>-->
+            </div>   
+        </div>
+        {% elif ff.id >= 4 and ff.id <= 5 %}
+        <div class="grid-item interior">
+            <img alt="" src="{{ff.image.url}}" >
+            <div class="portfolio_hover_area">
+                <a class="fancybox" href="{{ff.image.url}}" data-fancybox-group="gallery" title="{{ff.title}}"><span class="fa fa-search"></span></a>
+                <!-- <a href="#"><span class="fa fa-link"></span></a>-->
+            </div>  
+        </div>
+        {% elif ff.id >= 7 and ff.id <= 9 %}
+        <div class="grid-item plumbing">
+            <img alt="" src="{{ff.image.url}}" >
+            <div class="portfolio_hover_area">
+                <a class="fancybox" href="{{ff.image.url}}" data-fancybox-group="gallery" title="{{ff.title}}"><span class="fa fa-search"></span></a>
+                <!-- <a href="#"><span class="fa fa-link"></span></a>-->
+            </div>  
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block social %}
+        {% for ss in sixth %}
+            <li><a href="{{ss.url}}"><span class="{{ss.icon}}"></span></a></li>
+        {% endfor %}
+{% endblock %}
+
+{% block contact %}
+    {% for contact in seventh %}
+        <li><a href=""><span class="fa fa-map-marker"></span><div style="display:flex;flex-direction: column;">
+        {% for adres in contact.addresses.all %}
+        <p>{{adres.address}}</p>
+        {% endfor %}
+        </div></a></li>
+        <li><a href=""><span class="fa fa-envelope"></span><div style="display:flex;flex-direction: column;">
+        {% for phon in contact.emails.all %}
+        <p>{{phon.email}}</p>
+        {% endfor %}
+        </div></a></li>
+        <li><a href=""><span class="fa fa-mobile"></span><div style="display:flex;flex-direction: column;">
+        {% for em in contact.phones.all %}
+        <p>{{em.phone}}</p>
+        {% endfor %}
+        </div></a></li>
+    {% endfor %}
+{% endblock %}
